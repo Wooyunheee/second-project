@@ -34,17 +34,23 @@ function pickRandom(){
 }
 
 function play(){
+    
+    let userValue = userInput.value;
+    console.log(userValue);
 
     if(userValue < 1 || userValue > 100 ){
         resultArea.textContent = "1과 100사이의 숫자를 입력해 주세요."
         return;
     }
 
+    if(history.includes(userValue) == true){
+        resultArea.textContent = "이미 있습니다. 다른 숫자를 입력해 주세요.";
+    }
+    
     chances--;
     chanceArea.textContent = `남은 기회 : ${chances}번  `
-    console.log("게임시작");
-    let userValue = userInput.value;
-    console.log(userValue);
+    
+
     if(userValue < computerNum) {
         console.log("Up!");
         resultArea.textContent = "Up";
@@ -60,9 +66,7 @@ function play(){
     history.push(userValue);
     console.log(history);
 
-    if(history.includes(userValue) == true){
-        resultArea.textContent = "이미 있습니다. 다른 숫자를 입력해 주세요.";
-    }
+  
 
     if(chances < 1){
         gameOver = true;
